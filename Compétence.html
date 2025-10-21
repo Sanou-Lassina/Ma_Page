@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Compétences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: #1779dc;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #1779dc, #2af598);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #bdc3c7;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .skills-category {
+            margin-bottom: 3rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            color: #2af598;
+            margin-right: 1rem;
+            width: 70px;
+            text-align: center;
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .skill-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2af598;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-card h3 i {
+            margin-right: 0.5rem;
+        }
+        
+        .skill-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: rgba(23, 121, 220, 0.3);
+            color: #b3d9ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(23, 121, 220, 0.5);
+        }
+        
+        .expertise-section {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(42, 245, 152, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #2af598;
+        }
+        
+        .expertise-section h4 {
+            color: #2af598;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .expertise-section ul {
+            padding-left: 1.2rem;
+            color: #e0e0e0;
+        }
+        
+        .expertise-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #bdc3c7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .category-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <h1>MES COMPÉTENCES</h1>
+            <p class="subtitle">Expertise technique en Data Science et Data Analyst</p>
+        </header>
+        
+        <main>
+            <!-- Python -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h2 class="category-title">Python</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-code"></i> Développement Python</h3>
+                        <p>Maîtrise approfondie de l'écosystème Python pour l'analyse de données et le développement d'applications. Expérience dans la création de scripts efficaces et de packages modulaires.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Traitement de données avec Pandas et NumPy</li>
+                                <li>Faire de la visualisation graphique dynamique et interactive</li>
+                                <li>Modélisation et apprentissage automatique (Machine Learning)</li>
+                                <li>Comception d'outils de reporting et tableau de bord</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Pandas, NumPy</span>
+                            <span class="tech-tag">Matplotlib, Seaborn, Plotly</span>
+                            <span class="tech-tag">Scikit-learn, XGBoost, TensorFlow</span>
+                            <span class="tech-tag">Streamlit, Dash (Plotly)</span>
+                            <span class="tech-tag">Jupyter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- R -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fab fa-r-project"></i>
+                    </div>
+                    <h2 class="category-title">R</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-chart-line"></i> Analyse Statistique avec R</h3>
+                        <p>Expertise en analyse statistique avancée et création de rapports reproductibles. Maîtrise du tidyverse pour la manipulation et la visualisation de données complexes.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Réalisation d'analyses statistiques complexes (régression, ANOVA, séries temporelles)</li>
+                                <li>Création de rapports dynamiques avec R Markdown et Shiny</li>
+                                <li>Développement de packages R personnalisés</li>
+                                <li>Visualisations avancées avec ggplot2 et plotly</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Tidyverse</span>
+                            <span class="tech-tag">ggplot2</span>
+                            <span class="tech-tag">Shiny</span>
+                            <span class="tech-tag">dplyr</span>
+                            <span class="tech-tag">R Markdown</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SQL -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h2 class="category-title">SQL</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-server"></i> Gestion de Bases de Données</h3>
+                        <p>Compétences avancées en conception, optimisation et interrogation de bases de données relationnelles. Expérience en modélisation de données et en requêtes complexes.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Conception et optimisation de schémas de bases de données</li>
+                                <li>Développement de requêtes SQL complexes (CTE, fenêtrage, jointures avancées)</li>
+                                <li>Administration et maintenance de bases Oracle et PostgreSQL</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Oracle</span>
+                            <span class="tech-tag">Microsoft Access</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">SQL Avancé</span>
+                            <span class="tech-tag">SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Machine Learning -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2 class="category-title">Machine Learning</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-brain"></i> Algorithmes Avancés</h3>
+                        <p>Je suis en apprentissage pour le développement et déploiement sur la cloud de modèles de machine learning pour des applications prédictives. Apprentissage pour la maîtrise des algorithmes de boosting et d'ensembling.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Implémentation de modèles XGBoost et Random Forest pour des problèmes complexes</li>
+                                <li>Feature engineering et sélection de variables</li>
+                                <li>Optimisation d'hyperparamètres avec GridSearch et Bayesian Optimization</li>
+                                <li>Déploiement de modèles en production avec MLflow</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">XGBoost</span>
+                            <span class="tech-tag">Random Forest</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">MLflow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visualisation -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h2 class="category-title">Visualisation de Données</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-chart-pie"></i> Tableaux de Bord Interactifs</h3>
+                        <p>Création de visualisations percutantes et de tableaux de bord interactifs pour faciliter la prise de décision. Expertise en storytelling data-driven.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Conception de tableaux de bord Power BI pour le suivi d'indicateurs clés</li>
+                                <li>Développement de visualisations avancées avec Matplotlib et Seaborn</li>
+                                <li>Création de rapports interactifs avec Plotly et Bokeh</li>
+                                <li>Design de dataviz pour des présentations exécutives</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Seaborn</span>
+                            <span class="tech-tag">Plotly</span>
+                            <span class="tech-tag">Tableau</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Statistiques -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h2 class="category-title">Statistiques Avancées & Analyse de Données</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-chart-line"></i> Méthodologies Statistiques</h3>
+                        <p>Approche rigoureuse de l'analyse de données avec application de méthodes statistiques avancées. Capacité à traduire des problèmes métier en hypothèses testables.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Analyse exploratoire de données (EDA) et feature analysis</li>
+                                <li>Tests d'hypothèses et intervalles de confiance</li>
+                                <li>Modélisation statistique (régression, séries temporelles, analyse de survie)</li>
+                                <li>Design d'expériences et A/B testing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Tests Statistiques</span>
+                            <span class="tech-tag">Régression</span>
+                            <span class="tech-tag">Séries Temporelles</span>
+                            <span class="tech-tag">EDA</span>
+                            <span class="tech-tag">A/B Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Streamlit -->
+            <div class="skills-category">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <h2 class="category-title">Développement d'Applications Streamlit</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3><i class="fas fa-rocket"></i> Applications Data-Centric</h3>
+                        <p>Développement d'applications web interactives pour la data science avec Streamlit. Création d'interfaces utilisateur intuitives pour des modèles complexes.</p>
+                        
+                        <div class="expertise-section">
+                            <h4>Savoir-faire démontré :</h4>
+                            <ul>
+                                <li>Développement d'applications complètes de visualisation et d'analyse</li>
+                                <li>Intégration de modèles ML dans des interfaces utilisateur</li>
+                                <li>Création de dashboards interactifs avec composants Streamlit avancés</li>
+                                <li>Déploiement d'applications sur des plateformes cloud</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-tags">
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Dashboards</span>
+                            <span class="tech-tag">Applications Web</span>
+                            <span class="tech-tag">Déploiement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Compétences Data - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Création des éléments flottants
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.getElementById('floatingElements');
+            const elementCount = 15;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                // Taille aléatoire
+                const size = Math.random() * 100 + 50;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                // Position aléatoire
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100 + 100}%`;
+                
+                // Animation avec délai aléatoire
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                element.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                floatingContainer.appendChild(element);
+            }
+        });
+    </script>
+</body>
+</html>

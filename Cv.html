@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon CV - Data Scientist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: #1779dc;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #1779dc, #2af598);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #bdc3c7;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        
+        .cv-display-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cv-title {
+            font-size: 1.5rem;
+            color: #2af598;
+        }
+        
+        .pdf-viewer-container {
+            width: 100%;
+            height: 800px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .pdf-alternative {
+            width: 100%;
+            height: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .pdf-alternative i {
+            font-size: 4rem;
+            color: #1779dc;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pdf-alternative h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1779dc;
+        }
+        
+        .pdf-alternative p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .download-section {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #1779dc, #2af598);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .download-icon {
+            font-size: 1.4rem;
+        }
+        
+        .file-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        
+        .file-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #bdc3c7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid #2af598;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .viewer-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        
+        .viewer-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .viewer-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .pdf-viewer-container, .pdf-alternative {
+                height: 500px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .file-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .cv-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pdf-viewer-container, .pdf-alternative {
+                height: 400px;
+            }
+            
+            .download-btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h1>MON CURRICULUM VITAE</h1>
+        </header>
+        
+        <main>
+            <div class="cv-display-section">
+                <div class="cv-header">
+                    <h2 class="cv-title">CV - Lassina SANOU</h2>
+                    <div class="file-info">
+                        <div class="file-info-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>PDF Professionnel</span>
+                        </div>
+                        <div class="file-info-item">
+                            <i class="fas fa-weight-hanging"></i>
+                            <span>1 MB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pdf-viewer-container">
+                    <!-- Votre CV PDF s'affiche directement ici -->
+                    <iframe src="CV_SANOU_Lassina.pdf" class="pdf-viewer" id="pdfViewer" title="CV Lassina Sanou">
+                        Votre navigateur ne supporte pas l'affichage des PDF. 
+                        Utilisez le bouton de téléchargement ci-dessous.
+                    </iframe>
+                    
+                    <!-- Alternative si le PDF ne peut pas être affiché -->
+                    <div class="pdf-alternative" id="pdfAlternative" style="display: none;">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>CV Professionnel</h3>
+                        <p>Mon curriculum vitae détaillant mon parcours académique, mes compétences en data science, 
+                        mes expériences professionnelles et mes projets réalisés.</p>
+                        <p>Le fichier PDF n'a pas pu être affiché directement. Utilisez le bouton ci-dessous pour le télécharger.</p>
+                    </div>
+                </div>
+                
+                <div class="viewer-controls">
+                    <button class="viewer-btn" onclick="zoomIn()">
+                        <i class="fas fa-search-plus"></i> Zoomer
+                    </button>
+                    <button class="viewer-btn" onclick="zoomOut()">
+                        <i class="fas fa-search-minus"></i> Dézoomer
+                    </button>
+                    <button class="viewer-btn" onclick="resetZoom()">
+                        <i class="fas fa-sync-alt"></i> Taille normale
+                    </button>
+                </div>
+            </div>
+            
+            <div class="download-section">
+                <p style="color: #bdc3c7; margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Vous pouvez télécharger une copie de mon CV pour l'archiver ou l'imprimer.
+                </p>
+                
+                <button class="download-btn" id="downloadBtn">
+                    <i class="fas fa-download download-icon"></i>
+                    Télécharger mon CV
+                </button>
+                
+                <div class="file-info">
+                    <div class="file-info-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Format: PDF</span>
+                    </div>
+                    <div class="file-info-item">
+                        <i class="fas fa-weight-hanging"></i>
+                        <span>Taille: moins de 1 MB</span>
+                    </div>
+                    <div class="file-info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Mis à jour: Novembre 2025</span>
+                    </div>
+                </div>
+                
+                <div class="loading-spinner" id="loadingSpinner"></div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Lassina Sanou - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Variables pour le zoom
+        let currentZoom = 1;
+        const zoomStep = 0.1;
+        const maxZoom = 2;
+        const minZoom = 0.5;
+        
+        // Création des éléments flottants
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.getElementById('floatingElements');
+            const elementCount = 15;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                // Taille aléatoire
+                const size = Math.random() * 100 + 50;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                // Position aléatoire
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100 + 100}%`;
+                
+                // Animation avec délai aléatoire
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                element.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                floatingContainer.appendChild(element);
+            }
+            
+            // Gestion du téléchargement avec effet de chargement
+            const downloadBtn = document.getElementById('downloadBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            downloadBtn.addEventListener('click', function() {
+                // Afficher l'indicateur de chargement
+                loadingSpinner.style.display = 'block';
+                
+                // Simuler un délai de téléchargement
+                setTimeout(() => {
+                    // Créer un lien de téléchargement invisible
+                    const link = document.createElement('a');
+                    link.href = 'CV_SANOU_Lassina.pdf';
+                    link.download = 'CV_Lassina_Sanou_DataScientist.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Cacher l'indicateur de chargement
+                    loadingSpinner.style.display = 'none';
+                    
+                    // Afficher un message de confirmation
+                    const originalText = downloadBtn.innerHTML;
+                    downloadBtn.innerHTML = '<i class="fas fa-check download-icon"></i> CV Téléchargé !';
+                    downloadBtn.style.background = 'linear-gradient(135deg, #2af598, #1779dc)';
+                    
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = originalText;
+                        downloadBtn.style.background = 'linear-gradient(135deg, #1779dc, #2af598)';
+                    }, 3000);
+                }, 1000);
+            });
+            
+            // Vérification si le PDF est accessible
+            const pdfViewer = document.getElementById('pdfViewer');
+            const pdfAlternative = document.getElementById('pdfAlternative');
+            
+            if (pdfViewer) {
+                pdfViewer.onload = function() {
+                    console.log('PDF chargé avec succès');
+                };
+                
+                pdfViewer.onerror = function() {
+                    console.log('Erreur de chargement du PDF');
+                    if (pdfAlternative) {
+                        pdfViewer.style.display = 'none';
+                        pdfAlternative.style.display = 'flex';
+                    }
+                };
+            }
+        });
+        
+        // Fonctions de contrôle du zoom
+        function zoomIn() {
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                applyZoom();
+            }
+        }
+        
+        function zoomOut() {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                applyZoom();
+            }
+        }
+        
+        function resetZoom() {
+            currentZoom = 1;
+            applyZoom();
+        }
+        
+        function applyZoom() {
+            const pdfViewer = document.getElementById('pdfViewer');
+            if (pdfViewer) {
+                pdfViewer.style.transform = `scale(${currentZoom})`;
+                pdfViewer.style.transformOrigin = 'center top';
+            }
+        }
+    </script>
+</body>
+</html>

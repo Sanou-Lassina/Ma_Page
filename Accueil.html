@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Scientist - Page Professionnelle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: #1779dc;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #1779dc, #2af598);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #bdc3c7;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 3rem;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .profile-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .profile-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #e0e0e0;
+            text-align: left;
+        }
+        
+        .highlight {
+            color: #2af598;
+            font-weight: 600;
+        }
+        
+        .skills-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1779dc;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            color: #2af598;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-card p {
+            color: #bdc3c7;
+            text-align: center;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #bdc3c7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h1>BIENVENUE SUR MA PAGE</h1>
+            <p class="subtitle">Data Scientist & Analyste passionné par la transformation des données en insights stratégiques</p>
+        </header>
+        
+        <main>
+            <div class="profile-card">
+                <div class="profile-content">
+                    <h2>Profil Professionnel</h2>
+                    <p>
+                        Je suis <span class="highlight">Data Scientist</span> et <span class="highlight">Data Analyst</span> passionné par la valorisation des données. 
+                        Mon expertise repose sur l'analyse statistique, la modélisation prédictive et la visualisation de données 
+                        pour transformer l'information brute en solutions stratégiques et décisionnelles.
+                    </p>
+                    <p>
+                        J'allie rigueur analytique, curiosité scientifique et maîtrise des outils modernes tels que 
+                        <span class="highlight">Python, R, SQL, Stata, SPSS, Excel, Power BI,</span> et <span class="highlight">Tableau</span> pour créer de la valeur à partir des données.
+                    </p>
+                    <p>
+                        Explorez mon univers, découvrez mes projets et ma vision de la data au service du développement et de l'innovation.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h2 class="section-title">Mes Domaines d'Expertise</h2>
+                <div class="skills-container">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Machine Learning</h3>
+                        <p>Développement de modèles prédictifs et algorithmes d'apprentissage automatique</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Analyse Statistique</h3>
+                        <p>Exploration et interprétation des données pour en extraire des insights actionnables</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Gestion de Données</h3>
+                        <p>Conception et optimisation de bases de données, requêtes SQL complexes</p>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Visualisation</h3>
+                        <p>Création de dashboards interactifs et de représentations graphiques percutantes</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Lassina SANOU - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Création des éléments flottants
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.getElementById('floatingElements');
+            const elementCount = 15;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                // Taille aléatoire
+                const size = Math.random() * 100 + 50;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                // Position aléatoire
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100 + 100}%`;
+                
+                // Animation avec délai aléatoire
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                element.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                floatingContainer.appendChild(element);
+            }
+        });
+    </script>
+</body>
+</html>

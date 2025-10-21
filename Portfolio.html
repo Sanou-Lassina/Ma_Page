@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - Data Scientist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: #1779dc;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #1779dc, #2af598);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #bdc3c7;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .project-image {
+            height: 250px;
+            background: linear-gradient(45deg, #1779dc, #2af598);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-image i {
+            font-size: 4rem;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(23, 121, 220, 0.9);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2af598;
+        }
+        
+        .project-content p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background: rgba(23, 121, 220, 0.3);
+            color: #b3d9ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(23, 121, 220, 0.5);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2af598;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: #1779dc;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #bdc3c7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2af598;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <h1>MON PORTFOLIO</h1>
+            <p class="subtitle">Découvrez mes projets récents en Data Science et Développement</p>
+        </header>
+        
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Projets Réalisés</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12+</div>
+                <div class="stat-label">Mois d'Expertise</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Technologies Maîtrisées</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Satisfaction Client</div>
+            </div>
+        </div>
+        
+        <main>
+            <div class="portfolio-grid">
+                <!-- Projet 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-seedling"></i>
+                        <div class="project-badge">Data Science</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Plateforme d'Analyse du Rendement Céréalier</h3>
+                        <p>Application complète d'analyse prédictive des rendements agricoles intégrant machine learning, visualisations interactives et tableaux de bord dynamiques pour optimiser la production.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Machine Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Code Source
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Démo Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-globe-africa"></i>
+                        <div class="project-badge">Analyse Spatiale</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Analyse spatio-temporelle et modélisation des facteurs des cas du paludisme</h3>
+                        <p>Analyser l'impact des facteurs climatiques sur la dynamique spatio-temporelle des cas de paludisme au Burkina Faso permettant de comprendre et caractériser la dynamique dans le temps et dans l’espace à l'échelle nationale.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Shiny</span>
+                            <span class="tech-tag">R Markdown</span>
+                            <span class="tech-tag">ggplot2, dplyr</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Code Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="project-badge">Analyse Financière</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Dashboard Analytique Financier</h3>
+                        <p>Tableau de bord interactif Power BI pour l'analyse des performances financières avec intégration de données en temps réel et alertes automatiques.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">DAX</span>
+                            <span class="tech-tag">Excel</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Voir le Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="project-badge">Modèle Analytique</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Modélisation préduction pour augmenter le profit d'une campagne marketing</h3>
+                        <p>Construire un modèle prédictif capable d’identifier les clients les plus susceptibles de répondre positivement à une nouvelle offre.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas, NumPy, Seaborn, Matplotlib, Plotly</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Code Source
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Démo Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-project-diagram"></i>
+                        <div class="project-badge">Clustering</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Clustering et Réduction de Dimensions</h3>
+                        <p>Appliquer des techniques de clustering et d'utiliser des techniques de réduction de dimension pour visualiser les clusters en fin d'indentifier les groupes de clients par rapport à leur comportement d'achat.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn (KMeans, PCA)</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i>
+                                Architecture
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-vials"></i>
+                        <div class="project-badge">A/B Testing</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>A/B Testing</h3>
+                        <p>Mettre en place une expérimentation contrôlée pour comparer deux groupes et analyser les résultats avec les outils statistiques pour choisir la meilleure version.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python avec pandas, numpy, seaborn, matplotlib et scipy.stats</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://colab.research.google.com/drive/12ozQUhsELD3SmgQlLppgXDqfAUuzvhFx?usp=sharing"
+                                class="project-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Ouvrir le notebook Colab (nouvel onglet)">
+                                <i class="fab fa-google-drive"></i>
+                                Code source (Colab)
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Portfolio Data - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Création des éléments flottants
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingContainer = document.getElementById('floatingElements');
+            const elementCount = 15;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                // Taille aléatoire
+                const size = Math.random() * 100 + 50;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                // Position aléatoire
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100 + 100}%`;
+                
+                // Animation avec délai aléatoire
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                element.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                floatingContainer.appendChild(element);
+            }
+            
+            // Animation des cartes au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Appliquer l'animation aux cartes de projet
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
