@@ -426,22 +426,29 @@
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
                 submitBtn.disabled = true;
                 
-                // Simuler un délai d'envoi
-                setTimeout(() => {
-                    // Ici, vous intégrerez votre service d'envoi d'email
-                    // Par exemple : EmailJS, Formspree, ou votre backend
-                    
-                    // Pour l'instant, simulation d'envoi réussi
-                    showResponseMessage('Votre message a été envoyé avec succès ! Je vous répondrai dans les plus brefs délais.', 'success');
-                    
-                    // Réinitialiser le formulaire
-                    contactForm.reset();
-                    
-                    // Restaurer le bouton
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    
-                }, 2000);
+
+                // L'envoi réel avec EmailJS
+                emailjs.sendForm('service_w56lsz1', 'template_qcmrt9v', contactForm)
+                    .then(() => {
+                        // Succès de l'envoi
+                        showResponseMessage('Votre message a été envoyé avec succès ! Je vous répondrai dans les plus brefs délais.', 'success');
+                        
+                        // Réinitialiser le formulaire
+                        contactForm.reset();
+                        
+                        // Restaurer le bouton
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    })
+                    .catch((error) => {
+                        // Gestion des erreurs
+                        console.error('Erreur lors de l\'envoi:', error);
+                        showResponseMessage('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.', 'error');
+                        
+                        // Restaurer le bouton
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
             }
             
             function showResponseMessage(message, type) {
@@ -459,7 +466,7 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
         <script type="text/javascript">
             (function() {
-                emailjs.init("acyJuyM8pJQ_a51eC"); // Remplacez par votre clé publique EmailJS
+                emailjs.init("acyJuyM8pJQ_a51eC"); // clé publique EmailJS
             })();
     </script>
     -->
