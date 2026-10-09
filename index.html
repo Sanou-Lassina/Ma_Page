@@ -1,383 +1,331 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lassina Sanou - Data Scientist</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary-color: #1779dc;
-            --secondary-color: #2af598;
-            --dark-bg: #0f2027;
-            --medium-bg: #203a43;
-            --light-bg: #2c5364;
-            --text-light: #e0e0e0;
-            --text-muted: #bdc3c7;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--dark-bg), var(--medium-bg), var(--light-bg));
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-        }
-        
-        /* Sidebar Styles */
-        .sidebar {
-            width: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 1.5rem;
-            transition: all 0.3s ease;
-            overflow-y: auto;
-        }
-        
-        .profile-section {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .profile-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .profile-title {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .profile-location {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        .nav-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .nav-item.active {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .nav-icon {
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .social-link {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .social-link:hover {
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-        
-        /* Main Content Styles */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 2rem;
-            position: relative;
-        }
-        
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Floating Elements */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-            }
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                padding: 1rem;
-            }
-            
-            .profile-image {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .nav-menu {
-                flex-direction: row;
-                overflow-x: auto;
-                padding-bottom: 1rem;
-            }
-            
-            .nav-item {
-                flex-direction: column;
-                padding: 0.8rem;
-                min-width: 80px;
-                text-align: center;
-            }
-            
-            .nav-item span:not(.nav-icon) {
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lassina SANOU – Data Analyst, Suivi-Évaluation et Gestion de données</title>
+<meta name="description" content="Portfolio de Lassina SANOU : Data Analyst en Suivi-Évaluation et Gestion de données. Tableaux de bord, analyses statistiques et applications de machine learning.">
+<meta property="og:title" content="Lassina SANOU – Data Analyst, Suivi-Évaluation et Gestion de données">
+<meta property="og:description" content="Projets en ligne, compétences et CV : de la collecte de données de terrain aux tableaux de bord de décision.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+:root{--blue:#1779dc;--green:#2af598;--bg1:#0f2027;--bg2:#203a43;--bg3:#2c5364;--text:#e6e9ec;--muted:#b4bec6;--line:rgba(255,255,255,.12);--panel:rgba(255,255,255,.07)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3)) fixed;color:var(--text);line-height:1.65;display:flex;min-height:100vh}
+a{color:var(--green)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.sidebar{width:280px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;padding:2rem 1.25rem;background:rgba(0,0,0,.25);border-right:1px solid var(--line);display:flex;flex-direction:column}
+.avatar{width:130px;height:130px;margin:0 auto 1rem;border-radius:50%;border:4px solid var(--line);background:linear-gradient(45deg,var(--blue),var(--green));display:grid;place-items:center;font-size:2.4rem;font-weight:700;color:#fff;overflow:hidden;position:relative}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.side-name{text-align:center;font-size:1.35rem}
+.side-role{text-align:center;color:var(--muted);font-size:.92rem;margin:.25rem 0 1.5rem}
+nav{display:flex;flex-direction:column;gap:.25rem;flex:1}
+nav a{display:flex;align-items:center;gap:.9rem;padding:.7rem 1rem;border-radius:10px;color:var(--text);text-decoration:none}
+nav a i{width:20px;text-align:center}
+nav a:hover{background:var(--panel)}
+nav a.active{background:linear-gradient(135deg,var(--blue),#14a87a);color:#fff}
+.social{display:flex;justify-content:center;gap:1.1rem;padding-top:1.25rem;margin-top:1rem;border-top:1px solid var(--line);font-size:1.3rem}
+.social a{color:var(--muted)}.social a:hover{color:var(--green)}
+main{flex:1;min-width:0;padding:0 clamp(1rem,4vw,3.5rem)}
+section{max-width:1000px;margin:0 auto;padding:4.5rem 0 1rem}
+h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.15;margin-bottom:1rem}
+h2{font-size:1.9rem;margin-bottom:.4rem}
+.lead{color:var(--muted);margin-bottom:2rem;max-width:62ch}
+#accueil{padding-top:5rem}
+#accueil .intro{font-size:1.15rem;max-width:60ch;color:var(--text);margin-bottom:1.5rem}
+.tools{color:var(--muted);margin-bottom:2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.6rem;border-radius:50px;font-weight:600;text-decoration:none;border:1px solid var(--green);color:var(--green);background:transparent;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn.primary{background:linear-gradient(135deg,var(--blue),var(--green));color:#06222a;border-color:transparent}
+.btn:hover{filter:brightness(1.12)}
+.facts{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.facts b{display:block;font-size:2rem;color:var(--green);line-height:1.1}
+.facts span{color:var(--muted);font-size:.9rem}
+.about p{max-width:70ch;margin-bottom:1rem}
+.dip{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.75rem;margin-top:1rem}
+.dip li{padding:.8rem 1rem;border-left:3px solid var(--blue);background:var(--panel);border-radius:0 8px 8px 0}
+h3{font-size:1.15rem;margin:2rem 0 .8rem;color:var(--green)}
+.skillgroup{display:grid;grid-template-columns:200px 1fr;gap:.5rem 1.5rem;padding:1rem 0;border-top:1px solid var(--line)}
+.skillgroup h3{margin:0;font-size:1.05rem}
+.skillgroup p{color:var(--muted);font-size:.93rem;margin-top:.2rem}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem}
+.tag{background:rgba(23,121,220,.25);color:#cfe6ff;border:1px solid rgba(23,121,220,.5);padding:.2rem .75rem;border-radius:20px;font-size:.85rem}
+.note{background:rgba(42,245,152,.08);border-left:4px solid var(--green);padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.92rem;color:var(--muted);margin-bottom:1.5rem}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:1.5rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card .head{height:110px;background:linear-gradient(45deg,var(--blue),#14a87a);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;font-size:2.6rem;color:#fff}
+.badge{font-size:.8rem;font-weight:600;background:rgba(0,0,0,.35);padding:.25rem .8rem;border-radius:20px}
+.card .body{padding:1.25rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.card h4{font-size:1.15rem;color:var(--green)}
+.card p{font-size:.95rem}
+.card p b{color:#fff}
+.card .tags{margin-top:auto;padding-top:.5rem}
+.card .btns{margin-top:.5rem}
+.card .btn{padding:.5rem 1.2rem;font-size:.9rem}
+.card.first{border-color:var(--green)}
+.timeline{border-left:2px solid var(--blue);padding-left:1.5rem;margin-top:1rem}
+.timeline p{max-width:70ch}
+.cvbox{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem}
+.cvframe{width:100%;height:720px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem}
+.clist{list-style:none;display:flex;flex-direction:column;gap:1.1rem}
+.clist li{display:flex;gap:1rem;align-items:flex-start}
+.clist i{width:24px;text-align:center;color:var(--blue);font-size:1.2rem;margin-top:.2rem}
+.clist small{display:block;color:var(--muted)}
+.field{margin-bottom:1rem}
+.field label{display:block;margin-bottom:.3rem;font-weight:500}
+.field input,.field textarea{width:100%;padding:.75rem 1rem;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:inherit}
+.field textarea{min-height:140px;resize:vertical}
+.hp{position:absolute;left:-9999px}
+#msg{display:none;margin-top:1rem;padding:.8rem 1rem;border-radius:8px}
+#msg.ok{display:block;background:rgba(42,245,152,.15);border:1px solid var(--green)}
+#msg.err{display:block;background:rgba(255,99,99,.15);border:1px solid #ff6363}
+footer{max-width:1000px;margin:4rem auto 0;padding:1.5rem 0;border-top:1px solid var(--line);color:var(--muted);text-align:center;font-size:.9rem}
+@media(max-width:860px){
+ body{flex-direction:column}
+ html{scroll-padding-top:95px}
+ .sidebar{width:100%;height:auto;position:sticky;z-index:10;padding:.6rem .8rem;flex-direction:row;align-items:center;background:#0f2027}
+ .avatar,.side-name,.side-role,.social{display:none}
+ nav{flex-direction:row;overflow-x:auto;gap:.2rem}
+ nav a{flex-direction:column;gap:.15rem;padding:.5rem .7rem;font-size:.75rem;min-width:70px;text-align:center}
+ .contact{grid-template-columns:1fr}
+ .skillgroup{grid-template-columns:1fr}
+ .cvframe{display:none}
+ section{padding-top:3rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-image">
-                <img src="profile.jpg" alt="Lassina Sanou" class="profile-img">
-            </div>
-            <h2 class="profile-name">Lassina Sanou</h2>
-            <p class="profile-title">Data Scientist & Data Analyst</p>
-            <div class="profile-location">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Ouagadougou, Burkina Faso</span>
-            </div>
-        </div>
-        
-        <div class="nav-menu">
-            <div class="nav-item active" data-target="accueil">
-                <i class="fas fa-home nav-icon"></i>
-                <span>Accueil</span>
-            </div>
-            <div class="nav-item" data-target="apropos">
-                <i class="fas fa-user nav-icon"></i>
-                <span>À Propos</span>
-            </div>
-            <div class="nav-item" data-target="competences">
-                <i class="fas fa-laptop-code nav-icon"></i>
-                <span>Compétences</span>
-            </div>
-            <div class="nav-item" data-target="portfolio">
-                <i class="fas fa-briefcase nav-icon"></i>
-                <span>Portfolio</span>
-            </div>
-            <div class="nav-item" data-target="contact">
-                <i class="fas fa-envelope nav-icon"></i>
-                <span>Contact</span>
-            </div>
-            <div class="nav-item cv-section" data-target="cv">
-                <i class="fas fa-file-alt nav-icon"></i>
-                <span>Mon CV</span>
-            </div>
-        </div>
-        
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/slassina" class="social-link" target="_blank">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:slassina92@gmail.com" class="social-link">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="tel:+22674544113" class="social-link">
-                <i class="fas fa-phone"></i>
-            </a>
-        </div>
-    </div>
-    
-    <!-- Main Content Area -->
-    <div class="main-content">
-        <div class="floating-elements" id="floatingElements"></div>
-        
-        <!-- Accueil Section -->
-        <div class="content-section active" id="accueil">
-            <!-- Le contenu de votre page Accueil.html sera chargé ici -->
-            <iframe src="Accueil.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
-        
-        <!-- À Propos Section -->
-        <div class="content-section" id="apropos">
-            <!-- Le contenu de votre page A_Propos.html sera chargé ici -->
-            <iframe src="A_Propos.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
-        
-        <!-- Compétences Section -->
-        <div class="content-section" id="competences">
-            <!-- Le contenu de votre page Compétence.html sera chargé ici -->
-            <iframe src="Compétence.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
-        
-        <!-- Portfolio Section -->
-        <div class="content-section" id="portfolio">
-            <!-- Le contenu de votre page Portfolio.html sera chargé ici -->
-            <iframe src="Portfolio.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
-        
-        <!-- Contact Section -->
-        <div class="content-section" id="contact">
-            <!-- Le contenu de votre page Contact.html sera chargé ici -->
-            <iframe src="Contact.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
 
-        <!-- Cv Section -->
-        <div class="content-section" id="cv">
-            <!-- Le contenu de votre page Contact.html sera chargé ici -->
-            <iframe src="Cv.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
-    </div>
+<aside class="sidebar">
+  <div class="avatar" aria-hidden="true">LS<img src="profile.jpg" alt="" onerror="this.remove()"></div>
+  <h2 class="side-name">Lassina SANOU</h2>
+  <p class="side-role">Data Analyst · Suivi-Évaluation</p>
+  <nav aria-label="Navigation principale">
+    <a href="#accueil" class="active"><i class="fas fa-home"></i><span>Accueil</span></a>
+    <a href="#apropos"><i class="fas fa-user"></i><span>À propos</span></a>
+    <a href="#competences"><i class="fas fa-laptop-code"></i><span>Compétences</span></a>
+    <a href="#projets"><i class="fas fa-briefcase"></i><span>Projets</span></a>
+    <a href="#experience"><i class="fas fa-timeline"></i><span>Expérience</span></a>
+    <a href="#cv"><i class="fas fa-file-alt"></i><span>Mon CV</span></a>
+    <a href="#contact"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </nav>
+  <div class="social">
+    <a href="https://www.linkedin.com/in/slassina" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/sanou-lassina" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://wa.me/22674544113" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:slassina92@gmail.com" aria-label="E-mail"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
 
-    <script>
-        // Création des éléments flottants
-        document.addEventListener('DOMContentLoaded', function() {
-            const floatingContainer = document.getElementById('floatingElements');
-            const elementCount = 15;
-            
-            for (let i = 0; i < elementCount; i++) {
-                const element = document.createElement('div');
-                element.classList.add('floating-element');
-                
-                // Taille aléatoire
-                const size = Math.random() * 100 + 50;
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                
-                // Position aléatoire
-                element.style.left = `${Math.random() * 100}%`;
-                element.style.top = `${Math.random() * 100 + 100}%`;
-                
-                // Animation avec délai aléatoire
-                element.style.animationDelay = `${Math.random() * 5}s`;
-                element.style.animationDuration = `${15 + Math.random() * 10}s`;
-                
-                floatingContainer.appendChild(element);
-            }
-            
-            // Navigation entre les sections
-            const navItems = document.querySelectorAll('.nav-item');
-            const contentSections = document.querySelectorAll('.content-section');
-            
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const target = this.getAttribute('data-target');
-                    
-                    // Mettre à jour la navigation active
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Afficher la section cible
-                    contentSections.forEach(section => {
-                        section.classList.remove('active');
-                        if (section.id === target) {
-                            section.classList.add('active');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+<main>
+<section id="accueil">
+  <h1>Lassina SANOU, Data Analyst en Suivi-Évaluation et Gestion de données</h1>
+  <p class="intro">Je transforme des données de terrain en indicateurs fiables et en tableaux de bord utiles à la décision : de la collecte à l'analyse, jusqu'à la restitution aux équipes et aux partenaires.</p>
+  <p class="tools">Kobo · Epi Info · Stata · SPSS · R · Python · SQL · Power BI · Excel avancé</p>
+  <div class="btns">
+    <a class="btn primary" href="#projets"><i class="fas fa-chart-line"></i> Voir mes projets</a>
+    <a class="btn" href="CV_SANOU_Lassina.pdf" download><i class="fas fa-download"></i> Télécharger mon CV</a>
+  </div>
+  <div class="facts">
+    <div><b>+2 ans</b><span>d'expérience en analyse de données</span></div>
+    <div><b>6</b><span>projets en ligne</span></div>
+    <div><b>5</b><span>applications déployées</span></div>
+  </div>
+</section>
+
+<section id="apropos" class="about">
+  <h2>À propos</h2>
+  <p class="lead">Ingénieur statisticien, Data Analyst et Data Scientist.</p>
+  <p>Ma mission : exploiter les données pour aider à la prise de décision. J'analyse, modélise et interprète des données complexes avec des méthodes statistiques, du machine learning et de la visualisation.</p>
+  <p>Mon parcours en statistique appliquée et en suivi-évaluation me permet de relier la rigueur des méthodes aux besoins des projets : définir des indicateurs, collecter, contrôler la qualité des données, analyser et rendre compte.</p>
+  <h3>Diplômes et certifications</h3>
+  <ul class="dip">
+    <li>Master en Statistique Appliquée et Décisionnelle</li>
+    <li>Licence en Statistique Informatique</li>
+    <li>Baccalauréat série D</li>
+    <li>Certificat d'expertise en Gestion des Projets</li>
+    <li>Certificat d'expertise en Suivi et Évaluation</li>
+    <li>Suivi, Évaluation, Redevabilité et Apprentissage (MEAL)</li>
+    <li>Certificat en Data Analysis and Action Planning</li>
+  </ul>
+  <!-- À COMPLÉTER : ajoutez l'établissement et l'année de chaque diplôme, par ex. <li>Master en Statistique Appliquée et Décisionnelle, Université X, 2023</li> -->
+</section>
+
+<section id="competences">
+  <h2>Compétences</h2>
+  <p class="lead">Regroupées par étape du travail sur les données.</p>
+  <div class="skillgroup"><div><h3>Collecte de données</h3></div><div><div class="tags"><span class="tag">KoboCollect</span><span class="tag">KoboToolbox</span><span class="tag">Epi Info</span><span class="tag">Sphinx</span></div><p>Conception de questionnaires, collecte sur le terrain, contrôle de la qualité des données.</p></div></div>
+  <div class="skillgroup"><div><h3>Analyse statistique</h3></div><div><div class="tags"><span class="tag">Stata</span><span class="tag">SPSS</span><span class="tag">R (tidyverse, ggplot2)</span><span class="tag">Python (Pandas, NumPy)</span><span class="tag">Tests d'hypothèses</span><span class="tag">Régression</span><span class="tag">Séries temporelles</span></div><p>Analyse exploratoire, modèles statistiques, interprétation des résultats pour les décideurs.</p></div></div>
+  <div class="skillgroup"><div><h3>Machine learning</h3></div><div><div class="tags"><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Random Forest</span><span class="tag">Clustering (KMeans, PCA)</span></div><p>Modèles prédictifs intégrés dans des applications web.</p></div></div>
+  <div class="skillgroup"><div><h3>Visualisation et reporting</h3></div><div><div class="tags"><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Excel avancé</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">Matplotlib, Seaborn</span></div><p>Tableaux de bord de suivi des indicateurs clés (KPI) et rapports.</p></div></div>
+  <div class="skillgroup"><div><h3>Bases de données</h3></div><div><div class="tags"><span class="tag">SQL</span><span class="tag">Oracle</span><span class="tag">MySQL</span><span class="tag">SQL Server</span><span class="tag">Microsoft Access</span><span class="tag">Databricks</span></div><p>Requêtes, jointures et modélisation de données.</p></div></div>
+</section>
+
+<section id="projets">
+  <h2>Projets</h2>
+  <p class="lead">Six projets, du tableau de bord à la prédiction.</p>
+  <p class="note">Les applications Streamlit gratuites se mettent en veille après un temps d'inactivité : si l'écran propose de la réveiller, cliquez simplement sur le bouton, le chargement prend quelques secondes.</p>
+  <!-- Pour ajouter une capture : insérez <img src="captures/nom.png" alt="Capture de l'application" style="width:100%;display:block"> juste avant <div class="body"> de la carte. -->
+  <div class="projects">
+
+    <article class="card first">
+      <div class="head"><i class="fas fa-landmark"></i><span class="badge">Machine learning</span></div>
+      <div class="body">
+        <h4>Prédiction de crédit bancaire</h4>
+        <p><b>Problème :</b> aider à anticiper la décision d'octroi d'un crédit à partir du profil du client.</p>
+        <p><b>Solution :</b> application web interactive qui applique un modèle prédictif et affiche la décision estimée.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Machine Learning</span></div>
+        <div class="btns"><a class="btn" href="https://bank-credit-prediction.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Voir l'application</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head"><i class="fas fa-mobile-alt"></i><span class="badge">Dashboard</span></div>
+      <div class="body">
+        <h4>Dashboard des ventes et services Mobile Money</h4>
+        <p><b>Problème :</b> les décideurs n'ont pas de vue consolidée des transactions, des clients et des objectifs.</p>
+        <p><b>Solution :</b> tableau de bord interactif (données simulées) avec filtres, tendances, performance par agence et par commercial, et atteinte des objectifs.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Git et GitHub</span><span class="tag">Streamlit</span><span class="tag">Plotly, Pandas, NumPy, Seaborn</span></div>
+        <div class="btns"><a class="btn" href="https://dashboardmobilemoney.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Voir l'application</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head"><i class="fas fa-house"></i><span class="badge">Machine learning</span></div>
+      <div class="body">
+        <h4>Prédiction des prix de l'immobilier (HousePredict)</h4>
+        <p><b>Problème :</b> estimer le prix d'un bien à partir de ses caractéristiques.</p>
+        <p><b>Solution :</b> application qui analyse un grand nombre de propriétés, dégage les tendances du marché et prédit le prix avec un modèle XGBoost (gradient boosting).</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">XGBoost</span></div>
+        <div class="btns"><a class="btn" href="https://apphousepredict.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Voir l'application</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head"><i class="fas fa-bullhorn"></i><span class="badge">Machine learning</span></div>
+      <div class="body">
+        <h4>Modélisation prédictive des ventes publicitaires</h4>
+        <p><b>Problème :</b> mesurer l'impact des canaux publicitaires (télévision, radio, presse, digital) sur le chiffre d'affaires.</p>
+        <p><b>Solution :</b> plateforme d'exploration, de visualisation et de modélisation comparant des modèles de régression linéaire, Ridge, Lasso et Random Forest.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Régression</span><span class="tag">Random Forest</span></div>
+        <div class="btns"><a class="btn" href="https://ventepub.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Voir l'application</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head"><i class="fas fa-seedling"></i><span class="badge">Machine learning</span></div>
+      <div class="body">
+        <h4>Analyse du rendement céréalier</h4>
+        <p><b>Problème :</b> comprendre les facteurs de rendement agricole pour optimiser la production.</p>
+        <p><b>Solution :</b> application d'analyse prédictive avec visualisations interactives et tableaux de bord dynamiques.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Machine Learning</span></div>
+        <div class="btns"><a class="btn" href="https://agriprojet.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Voir l'application</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="head"><i class="fas fa-chart-line"></i><span class="badge">Analyse marketing</span></div>
+      <div class="body">
+        <h4>Segmentation des clients pour le marketing en ligne</h4>
+        <p><b>Problème :</b> améliorer la stratégie de vente et de marketing d'une entreprise en ligne pour augmenter le chiffre d'affaires et la rentabilité.</p>
+        <p><b>Solution :</b> analyse par segmentation des profils clients, avec visualisations et recommandations.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Pandas, NumPy</span><span class="tag">Scikit-learn</span><span class="tag">Plotly, Seaborn</span></div>
+        <div class="btns"><a class="btn" href="https://sanou-lassina.github.io/Analyse-Vente/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Voir l'analyse</a></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="experience">
+  <h2>Expérience</h2>
+  <p class="lead">Plus de deux ans en analyse de données.</p>
+  <div class="timeline">
+    <h3>Data Analyst</h3>
+    <p>Développement et déploiement de solutions basées sur les données dans plusieurs secteurs : transformation de données complexes en recommandations concrètes, tableaux de bord et modèles prédictifs.</p>
+  </div>
+  <!-- À COMPLÉTER : remplacez le bloc ci-dessus par une ligne par poste. Modèle :
+  <div class="timeline">
+    <h3>Intitulé du poste, Nom de la structure (2023 – 2025)</h3>
+    <p>Mission principale en une phrase.</p>
+    <ul><li>Résultat chiffré 1 (ex. : tableau de bord de suivi de 25 indicateurs pour 12 sites)</li><li>Résultat chiffré 2</li></ul>
+  </div> -->
+</section>
+
+<section id="cv">
+  <h2>Mon CV</h2>
+  <p class="lead">Format PDF, à consulter en ligne ou à télécharger.</p>
+  <div class="cvbox">
+    <a class="btn primary" href="CV_SANOU_Lassina.pdf" download="CV_Lassina_Sanou.pdf"><i class="fas fa-download"></i> Télécharger le CV</a>
+    <a class="btn" href="CV_SANOU_Lassina.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-up-right-from-square"></i> Ouvrir dans un onglet</a>
+  </div>
+  <iframe class="cvframe" src="CV_SANOU_Lassina.pdf" title="CV de Lassina SANOU"></iframe>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p class="lead">Un poste, une mission ou un projet de données : écrivez-moi, je réponds sous 24 heures.</p>
+  <div class="contact">
+    <ul class="clist">
+      <li><i class="fas fa-envelope"></i><div><a href="mailto:slassina92@gmail.com">slassina92@gmail.com</a><small>E-mail</small></div></li>
+      <li><i class="fab fa-whatsapp"></i><div><a href="https://wa.me/22674544113" target="_blank" rel="noopener noreferrer">+226 74 54 41 13</a><small>WhatsApp et appels</small></div></li>
+      <li><i class="fas fa-phone"></i><div><a href="tel:+22662972111">+226 62 97 21 11</a><small>Téléphone</small></div></li>
+      <li><i class="fab fa-linkedin"></i><div><a href="https://www.linkedin.com/in/slassina" target="_blank" rel="noopener noreferrer">linkedin.com/in/slassina</a><small>LinkedIn</small></div></li>
+      <li><i class="fab fa-github"></i><div><a href="https://github.com/sanou-lassina" target="_blank" rel="noopener noreferrer">github.com/sanou-lassina</a><small>GitHub</small></div></li>
+      <li><i class="fas fa-map-marker-alt"></i><div>Burkina Faso<small>Ouvert aux missions à distance</small></div></li>
+    </ul>
+    <form id="contactForm" novalidate>
+      <div class="field"><label for="name">Nom complet *</label><input id="name" name="name" type="text" required autocomplete="name"></div>
+      <div class="field"><label for="email">Adresse e-mail *</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label for="subject">Sujet *</label><input id="subject" name="subject" type="text" required></div>
+      <div class="field"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Décrivez votre besoin ou votre proposition"></textarea></div>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary" type="submit" id="send"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+      <div id="msg" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>© 2026 Lassina SANOU. Tous droits réservés.</footer>
+</main>
+
+<script>
+// Lien actif dans le menu selon la section visible
+(function(){
+  var links=document.querySelectorAll('nav a'),secs=[];
+  links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)secs.push([a,s]);});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('active')});
+      secs.forEach(function(p){if(p[1]===e.target)p[0].classList.add('active')});}});
+  },{rootMargin:'-35% 0px -60% 0px'});
+  secs.forEach(function(p){io.observe(p[1])});
+})();
+
+// Formulaire de contact (EmailJS)
+(function(){
+  var ready=typeof emailjs!=='undefined';
+  if(ready)emailjs.init('acyJuyM8pJQ_a51eC');
+  var f=document.getElementById('contactForm'),m=document.getElementById('msg'),b=document.getElementById('send');
+  function show(t,c){m.textContent=t;m.className=c;}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(f.website.value)return;               // anti-spam : champ piège rempli par les robots
+    if(!f.checkValidity()){show('Merci de remplir tous les champs avec une adresse e-mail valide.','err');return;}
+    if(!ready){show("Le service d'envoi est indisponible. Écrivez-moi directement à slassina92@gmail.com.",'err');return;}
+    var html=b.innerHTML;b.disabled=true;b.innerHTML='<i class="fas fa-spinner fa-spin"></i> Envoi en cours';
+    emailjs.sendForm('service_w56lsz1','template_qcmrt9v',f).then(function(){
+      show('Message envoyé. Je vous réponds dans les 24 heures.','ok');f.reset();
+    }).catch(function(){
+      show("L'envoi a échoué. Réessayez ou écrivez-moi directement à slassina92@gmail.com.",'err');
+    }).finally(function(){b.disabled=false;b.innerHTML=html;});
+  });
+})();
+</script>
 </body>
 </html>
