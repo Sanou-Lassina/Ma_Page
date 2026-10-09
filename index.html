@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lassina SANOU – Data Analyst, Suivi-Évaluation et Gestion de données</title>
-<meta name="description" content="Portfolio de Lassina SANOU : Data Analyst en Suivi-Évaluation et Gestion de données. Tableaux de bord, analyses statistiques et applications de machine learning.">
-<meta property="og:title" content="Lassina SANOU – Data Analyst, Suivi-Évaluation et Gestion de données">
+<title>Lassina SANOU – Data Analyst et Data Scientist</title>
+<meta name="description" content="Portfolio de Lassina SANOU : Data Analyst et Data Scientist. Analyse de données, tableaux de bord, modèles de machine learning déployés en applications web.">
+<meta property="og:title" content="Lassina SANOU – Data Analyst et Data Scientist">
 <meta property="og:description" content="Projets en ligne, compétences et CV : de la collecte de données de terrain aux tableaux de bord de décision.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
@@ -32,12 +32,15 @@ nav a.active{background:linear-gradient(135deg,var(--blue),#14a87a);color:#fff}
 .social a{color:var(--muted)}.social a:hover{color:var(--green)}
 main{flex:1;min-width:0;padding:0 clamp(1rem,4vw,3.5rem)}
 section{max-width:1000px;margin:0 auto;padding:4.5rem 0 1rem}
-h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.15;margin-bottom:1rem}
+h1{font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.05;margin-bottom:.6rem}
+.role{font-size:clamp(1.4rem,3.2vw,2.2rem);font-weight:600;color:var(--green);margin-bottom:.8rem}
+.role span{color:var(--muted);font-weight:400;margin:0 .35em}
+.stack{font-size:clamp(1rem,2vw,1.2rem);font-weight:500;margin-bottom:.3rem}
+.focus{color:var(--muted);font-size:1.05rem;margin-bottom:1.6rem}
 h2{font-size:1.9rem;margin-bottom:.4rem}
 .lead{color:var(--muted);margin-bottom:2rem;max-width:62ch}
 #accueil{padding-top:5rem}
-#accueil .intro{font-size:1.15rem;max-width:60ch;color:var(--text);margin-bottom:1.5rem}
-.tools{color:var(--muted);margin-bottom:2rem}
+#accueil .intro{font-size:1.1rem;max-width:64ch;color:var(--text);margin-bottom:2rem}
 .btns{display:flex;flex-wrap:wrap;gap:.8rem}
 .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.6rem;border-radius:50px;font-weight:600;text-decoration:none;border:1px solid var(--green);color:var(--green);background:transparent;cursor:pointer;font-size:1rem;font-family:inherit}
 .btn.primary{background:linear-gradient(135deg,var(--blue),var(--green));color:#06222a;border-color:transparent}
@@ -45,7 +48,12 @@ h2{font-size:1.9rem;margin-bottom:.4rem}
 .facts{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line)}
 .facts b{display:block;font-size:2rem;color:var(--green);line-height:1.1}
 .facts span{color:var(--muted);font-size:.9rem}
-.about p{max-width:70ch;margin-bottom:1rem}
+.aboutgrid{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:start;margin-top:.5rem}
+.about-text p{margin-bottom:1rem;max-width:62ch}
+.duo{display:flex;flex-direction:column;gap:1rem}
+.duo div{padding:1rem 1.25rem;background:var(--panel);border-left:3px solid var(--green);border-radius:0 10px 10px 0}
+.duo h3{margin:0 0 .3rem;font-size:1.05rem}
+.duo p{font-size:.95rem;color:var(--text)}
 .dip{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.75rem;margin-top:1rem}
 .dip li{padding:.8rem 1rem;border-left:3px solid var(--blue);background:var(--panel);border-radius:0 8px 8px 0}
 h3{font-size:1.15rem;margin:2rem 0 .8rem;color:var(--green)}
@@ -68,7 +76,12 @@ h3{font-size:1.15rem;margin:2rem 0 .8rem;color:var(--green)}
 .card .btn{padding:.5rem 1.2rem;font-size:.9rem}
 .card.first{border-color:var(--green)}
 .timeline{border-left:2px solid var(--blue);padding-left:1.5rem;margin-top:1rem}
-.timeline p{max-width:70ch}
+.exp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:2.5rem;margin-top:1.5rem}
+.timeline{margin-top:0}
+.timeline h3{margin:0 0 .2rem}
+.timeline .sub{color:var(--muted);margin-bottom:.8rem}
+.timeline ul{padding-left:1.1rem;margin-bottom:1rem}
+.timeline li{margin-bottom:.5rem}
 .cvbox{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem}
 .cvframe{width:100%;height:720px;border:1px solid var(--line);border-radius:10px;background:#fff}
 .contact{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem}
@@ -93,6 +106,7 @@ footer{max-width:1000px;margin:4rem auto 0;padding:1.5rem 0;border-top:1px solid
  nav{flex-direction:row;overflow-x:auto;gap:.2rem}
  nav a{flex-direction:column;gap:.15rem;padding:.5rem .7rem;font-size:.75rem;min-width:70px;text-align:center}
  .contact{grid-template-columns:1fr}
+ .aboutgrid{grid-template-columns:1fr}
  .skillgroup{grid-template-columns:1fr}
  .cvframe{display:none}
  section{padding-top:3rem}
@@ -105,7 +119,7 @@ footer{max-width:1000px;margin:4rem auto 0;padding:1.5rem 0;border-top:1px solid
 <aside class="sidebar">
   <div class="avatar" aria-hidden="true">LS<img src="profile.jpg" alt="" onerror="this.remove()"></div>
   <h2 class="side-name">Lassina SANOU</h2>
-  <p class="side-role">Data Analyst · Suivi-Évaluation</p>
+  <p class="side-role">Data Analyst · Data Scientist</p>
   <nav aria-label="Navigation principale">
     <a href="#accueil" class="active"><i class="fas fa-home"></i><span>Accueil</span></a>
     <a href="#apropos"><i class="fas fa-user"></i><span>À propos</span></a>
@@ -125,9 +139,11 @@ footer{max-width:1000px;margin:4rem auto 0;padding:1.5rem 0;border-top:1px solid
 
 <main>
 <section id="accueil">
-  <h1>Lassina SANOU, Data Analyst en Suivi-Évaluation et Gestion de données</h1>
-  <p class="intro">Je transforme des données de terrain en indicateurs fiables et en tableaux de bord utiles à la décision : de la collecte à l'analyse, jusqu'à la restitution aux équipes et aux partenaires.</p>
-  <p class="tools">Kobo · Epi Info · Stata · SPSS · R · Python · SQL · Power BI · Excel avancé</p>
+  <h1>Lassina SANOU</h1>
+  <p class="role">Data Analyst <span>|</span> Data Scientist</p>
+  <p class="stack">Python • SQL • Power BI • Machine Learning</p>
+  <p class="focus">Analyse de données &amp; Aide à la décision</p>
+  <p class="intro">Je transforme les données en décisions : indicateurs fiables et tableaux de bord pour piloter l'activité, modèles de machine learning développés puis déployés en applications web accessibles en ligne.</p>
   <div class="btns">
     <a class="btn primary" href="#projets"><i class="fas fa-chart-line"></i> Voir mes projets</a>
     <a class="btn" href="CV_SANOU_Lassina.pdf" download><i class="fas fa-download"></i> Télécharger mon CV</a>
@@ -142,8 +158,17 @@ footer{max-width:1000px;margin:4rem auto 0;padding:1.5rem 0;border-top:1px solid
 <section id="apropos" class="about">
   <h2>À propos</h2>
   <p class="lead">Ingénieur statisticien, Data Analyst et Data Scientist.</p>
-  <p>Ma mission : exploiter les données pour aider à la prise de décision. J'analyse, modélise et interprète des données complexes avec des méthodes statistiques, du machine learning et de la visualisation.</p>
-  <p>Mon parcours en statistique appliquée et en suivi-évaluation me permet de relier la rigueur des méthodes aux besoins des projets : définir des indicateurs, collecter, contrôler la qualité des données, analyser et rendre compte.</p>
+  <div class="aboutgrid">
+    <div class="about-text">
+      <p>Ma mission : exploiter les données pour aider à la prise de décision. J'analyse, modélise et interprète des données complexes avec des méthodes statistiques, du machine learning et de la visualisation.</p>
+      <p>Je développe des modèles de machine learning et je les mène jusqu'au déploiement, sous forme d'applications web interactives accessibles en ligne.</p>
+      <p>Mon parcours en statistique appliquée et en suivi-évaluation me permet de relier la rigueur des méthodes aux besoins des projets : définir des indicateurs, collecter, contrôler la qualité des données, analyser et rendre compte.</p>
+    </div>
+    <div class="duo">
+      <div><h3>Data Analyst</h3><p>Collecte, nettoyage et analyse statistique des données, indicateurs de suivi, tableaux de bord et rapports pour les décideurs.</p></div>
+      <div><h3>Data Scientist</h3><p>Modèles prédictifs de machine learning, de la préparation des données au déploiement en application web.</p></div>
+    </div>
+  </div>
   <h3>Diplômes et certifications</h3>
   <ul class="dip">
     <li>Master en Statistique Appliquée et Décisionnelle</li>
@@ -245,17 +270,36 @@ footer{max-width:1000px;margin:4rem auto 0;padding:1.5rem 0;border-top:1px solid
 
 <section id="experience">
   <h2>Expérience</h2>
-  <p class="lead">Plus de deux ans en analyse de données.</p>
-  <div class="timeline">
-    <h3>Data Analyst</h3>
-    <p>Développement et déploiement de solutions basées sur les données dans plusieurs secteurs : transformation de données complexes en recommandations concrètes, tableaux de bord et modèles prédictifs.</p>
+  <p class="lead">Plus de deux ans en analyse de données et en science des données.</p>
+  <div class="exp">
+    <article class="timeline">
+      <h3>Data Analyst</h3>
+      <p class="sub">Analyse de données, indicateurs et aide à la décision</p>
+      <ul>
+        <li>Collecter, nettoyer et structurer des données de sources variées (fichiers, bases SQL, données d'enquête) pour les rendre exploitables.</li>
+        <li>Définir et suivre des indicateurs clés (KPI) et produire des tableaux de bord interactifs avec Power BI, Streamlit et Plotly.</li>
+        <li>Réaliser des analyses statistiques (exploratoire, tests d'hypothèses, régression, séries temporelles) avec Python, R, Stata et SPSS.</li>
+        <li>Extraire, joindre et agréger les données avec des requêtes SQL.</li>
+        <li>Restituer les résultats sous forme de rapports et de recommandations claires pour les décideurs.</li>
+      </ul>
+      <div class="tags"><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Excel avancé</span><span class="tag">Stata</span><span class="tag">SPSS</span><span class="tag">Kobo</span></div>
+    </article>
+    <article class="timeline">
+      <h3>Data Scientist</h3>
+      <p class="sub">Modèles de machine learning, du prototype au déploiement</p>
+      <ul>
+        <li>Concevoir des modèles prédictifs : régressions (linéaire, Ridge, Lasso), Random Forest, XGBoost, et clustering (KMeans, PCA).</li>
+        <li>Préparer les données : feature engineering, sélection de variables, validation et évaluation des modèles.</li>
+        <li>Déployer les modèles dans des applications web interactives (Streamlit), mises en ligne et versionnées avec Git et GitHub.</li>
+        <li>Appliquer ces méthodes à des cas concrets : prédiction de crédit bancaire, prix de l'immobilier, ventes publicitaires, rendement agricole, segmentation de clientèle.</li>
+        <li>Rendre les analyses reproductibles avec des notebooks Jupyter et des scripts Python.</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Streamlit</span><span class="tag">Git et GitHub</span></div>
+    </article>
   </div>
-  <!-- À COMPLÉTER : remplacez le bloc ci-dessus par une ligne par poste. Modèle :
-  <div class="timeline">
-    <h3>Intitulé du poste, Nom de la structure (2023 – 2025)</h3>
-    <p>Mission principale en une phrase.</p>
-    <ul><li>Résultat chiffré 1 (ex. : tableau de bord de suivi de 25 indicateurs pour 12 sites)</li><li>Résultat chiffré 2</li></ul>
-  </div> -->
+  <!-- À COMPLÉTER : ajoutez la structure et la période, par ex. dans le sous-titre :
+       <p class="sub">Nom de la structure · 2023 – 2025</p>
+       et un résultat chiffré par poste, par ex. <li>Tableau de bord de suivi de 25 indicateurs pour 12 sites</li> -->
 </section>
 
 <section id="cv">
